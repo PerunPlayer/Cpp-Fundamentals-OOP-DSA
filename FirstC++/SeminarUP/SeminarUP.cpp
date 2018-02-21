@@ -15,8 +15,7 @@ int main()
 	cout << inserting;
 	cin >> weightInKilograms;
 	cout << weightInKilograms * kiloToLbs << endl;*/
-
-
+	
 	// ELHICHKA
 	int n;
 	cin >> n;
