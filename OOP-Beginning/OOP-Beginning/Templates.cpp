@@ -23,18 +23,18 @@ public:
 	void print()const;
 };
 
-int main()
-{
-	MyVector<int> a;
-	a.add(3);
-	a.add(65);
-	a.add(4);
-	a.add(5);
-
-	a.print();
-
-	return 0;
-}
+//int main()
+//{
+//	MyVector<int> a;
+//	a.add(3);
+//	a.add(65);
+//	a.add(4);
+//	a.add(5);
+//
+//	a.print();
+//
+//	return 0;
+//}
 
 template<typename T>
 void MyVector<T>::resize()

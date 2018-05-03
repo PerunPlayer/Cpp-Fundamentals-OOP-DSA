@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D33AE134-D17B-4B6C-9DA6-C26C546A75A5}</ProjectGuid>
+    <ProjectGuid>{40A30451-AC1A-4AAF-BB98-F40F79DE0661}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>OOPBeginning</RootNamespace>
+    <RootNamespace>Account</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -145,24 +145,17 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DynamicMemory.cpp" />
-    <ClCompile Include="Inheritance.cpp" />
-    <ClCompile Include="LList.cpp" />
-    <ClCompile Include="OOP-Beginning.cpp" />
-    <ClCompile Include="OOP-classes.cpp" />
+    <ClCompile Include="Account.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="StringImplement.cpp" />
-    <ClCompile Include="Templates.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

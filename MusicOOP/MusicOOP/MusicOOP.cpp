@@ -16,7 +16,7 @@ private:
 	char* musician;
 	unsigned year;
 	unsigned durationInSec;
-	Song* original;
+	Song *original;
 
 public:
 	Song();
@@ -40,9 +40,18 @@ Song::Song()
 
 Song::Song(const Song& other)
 {
-	title = musician = nullptr;
-	year = durationInSec = 0;
-	original = nullptr;
+	title = other.title;
+	musician = other.musician;
+	year = other.year;
+
+	if (other.original == nullptr)
+	{
+		original = &other;
+	}
+	else
+	{
+		original = other.original;
+	}
 	
 	
 }

@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D33AE134-D17B-4B6C-9DA6-C26C546A75A5}</ProjectGuid>
+    <ProjectGuid>{9ABFD5E4-0C8D-4C86-B1C7-CB092B4174C6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>OOPBeginning</RootNamespace>
+    <RootNamespace>HW1OOP</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -145,24 +145,31 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="Army.h" />
+    <ClInclude Include="GalacticRepublic.h" />
+    <ClInclude Include="Galaxy.h" />
+    <ClInclude Include="Jedi.h" />
+    <ClInclude Include="JediTemple.h" />
+    <ClInclude Include="Planet.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Stormtrooper.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DynamicMemory.cpp" />
-    <ClCompile Include="Inheritance.cpp" />
-    <ClCompile Include="LList.cpp" />
-    <ClCompile Include="OOP-Beginning.cpp" />
-    <ClCompile Include="OOP-classes.cpp" />
+    <ClCompile Include="Army.cpp" />
+    <ClCompile Include="GalacticRepublic.cpp" />
+    <ClCompile Include="Galaxy.cpp" />
+    <ClCompile Include="HW1-OOP.cpp" />
+    <ClCompile Include="Jedi.cpp" />
+    <ClCompile Include="JediTemple.cpp" />
+    <ClCompile Include="Planet.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="StringImplement.cpp" />
-    <ClCompile Include="Templates.cpp" />
+    <ClCompile Include="Stormtrooper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

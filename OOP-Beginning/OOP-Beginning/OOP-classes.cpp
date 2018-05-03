@@ -3,6 +3,8 @@
 
 using namespace std;
 
+int const MAXLEN = 100;
+
 class Student
 {
 private:
@@ -51,12 +53,12 @@ public:
 
 //int main()
 //{
-//	char* firN, *lastN, *birthT;
+//	char firN[MAXLEN];
+//	char lastN[MAXLEN];
+//	char birthT[MAXLEN];
 //	unsigned age, facNum;
 //	cin >> firN >> lastN >> birthT >> age >> facNum;
 //	Student pesho(firN, lastN, age, birthT, facNum);
-//
-//
 //
 //	return 0;
 //}
