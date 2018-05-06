@@ -130,7 +130,7 @@ Student::~Student()
 	destroy();
 }
 
-char * Student::getFirstName() const
+char* Student::getFirstName() const
 {
 	return firstName;
 }
@@ -141,7 +141,7 @@ void Student::setFirstName(const char* firstname)
 	myStrCpy(this->firstName, firstname);
 }
 
-char * Student::getLastName() const
+char* Student::getLastName() const
 {
 	return lastName;
 }
@@ -152,7 +152,7 @@ void Student::setLastName(const char* lastname)
 	myStrCpy(this->lastName, lastname);
 }
 
-char * Student::getBirthTown() const
+char* Student::getBirthTown() const
 {
 	return birthTown;
 }
