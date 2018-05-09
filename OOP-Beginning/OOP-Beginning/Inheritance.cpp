@@ -100,29 +100,29 @@ public:
 	}
 };
 
-int main()
-{
-	ID<int> a(3);
-	ID<int> c(5);
-	std::cout << a.result() << std::endl;
-	Sum<int> b(&a, &c);
-	std::cout << b.result() << std::endl;
-	Substract<int> d(&c, &a);
-	std::cout << d.result() << std::endl;
-	Div<int> div(&b, &a);
-	std::cout << div.result() << std::endl;
-	Pow<int> p(&c, &a);
-	std::cout << p.result() << std::endl;
-
-
-
-	Formula<int>* arr[2];
-	arr[0] = &a;
-	arr[1] = &b;
-	std::cout << arr[1]->result();
-
-	return 0;
-}
+//int main()
+//{
+//	ID<int> a(3);
+//	ID<int> c(5);
+//	std::cout << a.result() << std::endl;
+//	Sum<int> b(&a, &c);
+//	std::cout << b.result() << std::endl;
+//	Substract<int> d(&c, &a);
+//	std::cout << d.result() << std::endl;
+//	Div<int> div(&b, &a);
+//	std::cout << div.result() << std::endl;
+//	Pow<int> p(&c, &a);
+//	std::cout << p.result() << std::endl;
+//
+//
+//
+//	Formula<int>* arr[2];
+//	arr[0] = &a;
+//	arr[1] = &b;
+//	std::cout << arr[1]->result();
+//
+//	return 0;
+//}
 
 //template<class T>
 //class Formula {

@@ -151,6 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DynamicMemory.cpp" />
+    <ClCompile Include="FastTask.cpp" />
+    <ClCompile Include="FastTask2.cpp" />
     <ClCompile Include="Inheritance.cpp" />
     <ClCompile Include="LList.cpp" />
     <ClCompile Include="OOP-Beginning.cpp" />
