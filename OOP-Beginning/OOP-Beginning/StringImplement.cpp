@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <cstring>
 
 class MyString
 {
@@ -6,6 +7,7 @@ public:
 	MyString();
 	~MyString();
 	MyString(const MyString&);
+	MyString(const char* value);
 	MyString& operator=(const MyString&);
 	MyString& operator=(const char*);
 
@@ -13,6 +15,7 @@ public:
 private:
 	char* container;
 	int length;
+	//add resize...
 
 public:
 	int size();
@@ -34,21 +37,21 @@ private:
 	void destroy();
 };
 
-//int main()
-//{
-//	//MyString str = "str";
-//	MyString str;
-//	str = "abv";
-//	str += "cd";
-//	int s = str.size();
-//	char c = str[2];
-//	bool isEmpty = str.empty();
-//	str.clear();
-//	s = str.size();
-//	isEmpty = str.empty();
-//
-//	return 0;
-//}
+int main()
+{
+	MyString str;
+	MyString str1 = "str";
+	str = "abv";
+	str += "cd";
+	int s = str.size();
+	char c = str[2];
+	bool isEmpty = str.empty();
+	str.clear();
+	s = str.size();
+	isEmpty = str.empty();
+
+	return 0;
+}
 
 MyString::MyString()
 {
@@ -64,6 +67,13 @@ MyString::MyString(const MyString& other)
 {
 	init();
 	copy(other);
+}
+
+MyString::MyString(const char* value)
+{
+	this->length = strlen(value);
+	this->container = new char[length + 1];
+	stringCopy(this->container, value, length + 1);
 }
 
 MyString& MyString::operator=(const MyString& other)
@@ -82,13 +92,11 @@ MyString& MyString::operator=(const char* other)
 	if (this != nullptr)
 	{
 		destroy();
-	}
+		init();
 
-	int i;
-	for (i = 0; other[i] != '\0'; i++){	}
-	
-	stringCopy(this->container, other, i+1);
-	this->length = i;
+		length = strlen(other);
+		stringCopy(this->container, other, length + 1);
+	}
 
 	return *this;
 }
@@ -149,13 +157,13 @@ char MyString::operator[](int index)
 
 void MyString::operator+=(char* strToAppend)
 {
-	int i;
-	for (i = 0; strToAppend[i] != '\0'; i++){ }
+	int i = strlen(strToAppend);
 
-	for (int k = 0, j = length - 1; j < this->length + i - 1; j++, k++)
+	for (int k = 0, j = length; j < length + i; j++, k++)
 	{
 		this->container[j] = strToAppend[k];
 	}
-	this->container[length + i] = '\0';
+	length += i;
+	this->container[length] = '\0';
 }
 

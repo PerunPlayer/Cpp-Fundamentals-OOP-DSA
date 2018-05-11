@@ -27,7 +27,7 @@ private:
 public:
 	bool finished(unsigned long t)
 	{
-		for (size_t i = 0; i < tasks.size; i++)
+		for (size_t i = 0; i < tasks.size(); i++)
 		{
 			if (!tasks[i]->finished(t))
 			{

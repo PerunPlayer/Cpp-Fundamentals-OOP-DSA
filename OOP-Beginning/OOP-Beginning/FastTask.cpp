@@ -141,34 +141,34 @@ bool elementInAllSets(int el, IntSet* sets[], size_t nSets)
 	return true;
 }
 
-int main()
-{
-	Interval i1(0, 100), i2(99, 200);
-
-	assert(i1.member(50));
-	assert(!i2.member(98));
-
-	EvenNumbers en;
-
-	assert(en.member(50));
-	assert(!en.member(51));
-
-	Container c1(5), c2(3);
-	c1.add(1);
-	c1.add(2);
-	c2.add(100);
-
-	assert(!c1.member(100));
-	assert(c1.member(2));
-
-	c1 = c2;
-
-	assert(c1.member(100));
-	assert(c2.member(100));
-
-	IntSet* sets[] = { &i1, &i2, &en, &c1, &c2 };
-
-	assert(elementInAllSets(100, sets, 5));
-
-	return 0;
-}
+//int main()
+//{
+//	Interval i1(0, 100), i2(99, 200);
+//
+//	assert(i1.member(50));
+//	assert(!i2.member(98));
+//
+//	EvenNumbers en;
+//
+//	assert(en.member(50));
+//	assert(!en.member(51));
+//
+//	Container c1(5), c2(3);
+//	c1.add(1);
+//	c1.add(2);
+//	c2.add(100);
+//
+//	assert(!c1.member(100));
+//	assert(c1.member(2));
+//
+//	c1 = c2;
+//
+//	assert(c1.member(100));
+//	assert(c2.member(100));
+//
+//	IntSet* sets[] = { &i1, &i2, &en, &c1, &c2 };
+//
+//	assert(elementInAllSets(100, sets, 5));
+//
+//	return 0;
+//}
