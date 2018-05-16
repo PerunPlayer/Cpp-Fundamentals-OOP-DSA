@@ -37,21 +37,21 @@ private:
 	void destroy();
 };
 
-int main()
-{
-	MyString str;
-	MyString str1 = "str";
-	str = "abv";
-	str += "cd";
-	int s = str.size();
-	char c = str[2];
-	bool isEmpty = str.empty();
-	str.clear();
-	s = str.size();
-	isEmpty = str.empty();
-
-	return 0;
-}
+//int main()
+//{
+//	MyString str;
+//	MyString str1 = "str";
+//	str = "abv";
+//	str += "cd";
+//	int s = str.size();
+//	char c = str[2];
+//	bool isEmpty = str.empty();
+//	str.clear();
+//	s = str.size();
+//	isEmpty = str.empty();
+//
+//	return 0;
+//}
 
 MyString::MyString()
 {

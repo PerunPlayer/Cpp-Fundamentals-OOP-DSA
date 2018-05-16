@@ -1,92 +1,154 @@
 #pragma once
 
+#include <iostream>
+
 template <class T>
 struct ListNode
 {
 	T data;
 	ListNode<T>* next;
-	ListNode(T _data, ListNode<T> _next = nullptr) : data(_data), next(_next) {}
+	ListNode(const T& _data, ListNode<T>* _next = nullptr) : data(_data), next(_next) {}
 };
 
 template <class T>
 class LinkedList
 {
-	ListNode<T>* start;
-	ListNode<T>* end;
-	int size;
-
 private:
-	void copy(const LinkedList<T>* other)
+	ListNode<T>* first;
+	ListNode<T>* last;
+	unsigned int size;
+
+	void copy(const LinkedList<T>& other)
 	{
-		ListNode<T>* other_holder = other.start;
-		start = end = nullptr;
-		size = other.size;
-		while (other_holder)
+		ListNode<T>* temp = other.first;
+		while (temp)
 		{
-			if (!start)
-			{
-				start = new ListNode<T>(other_holder->data);
-				end = start;
-			}
-			else
-			{
-				end->next = new ListNode<T>(other_holder->data);
-				end = end->next;
-			}
-			other_holder = other_holder->next;
+			push_back(temp->data);
+			temp = temp->next;
 		}
 	}
 
 	void destroy()
 	{
-		while (start)
+		while (size > 0)
 		{
-			ListNode<T>* tmp = start;
-			start = start->next;
-			delete tmp;
+			pop_front();
 		}
 	}
 
-	void toEnd(const T& elem)
+public:
+
+	LinkedList()
 	{
-		if (!start)
+		first = last = nullptr;
+		size = 0;
+	}
+
+	LinkedList(const LinkedList<T>* other)
+	{
+		copy(other);
+	}
+
+	LinkedList& operator=(const LinkedList<T>& other)
+	{
+		if (this != other)
 		{
-			start->next = new ListNode<T>(elem);
-			end = start->next;
+			destroy();
+			first = last = nullptr;
+			copy(other);
+		}
+
+		return *this;
+	}
+
+	~LinkedList()
+	{
+		destroy();
+	}
+
+	void push_back(const T& elem)
+	{
+		ListNode<T>* temp = new ListNode<T>(elem, nullptr);
+		if (temp)
+		{
+			if (size == 0)
+			{
+				first = temp;
+				last = temp;
+			}
+			else
+			{
+				this->last->next = temp;
+				this->last = temp;
+			}
+
 			size++;
 		}
-		else
+	}
+
+	void push_front(T data)
+	{
+		ListNode<T>* temp = new ListNode<T>(data, first);
+		first = temp;
+		size++;
+	}
+
+	void pushAfter(T data, int index)
+	{
+		ListNode<T>* temp2 = first;
+		ListNode<T>* temp = new ListNode<T>(data, nullptr);
+		while (index != 0)
 		{
-			end->next = new ListNode<T>(elem);
-			end = end->next;
-			size++;
+			temp2 = temp2->next;
+			index--;
 		}
+		temp->next = temp2->next;
+		temp2->next = temp;
+		size++;
+	}
+
+	T get(int index)
+	{
+		ListNode<T>* temp = first;
+		for (int i = 0; i < index; i++)
+		{
+			temp = temp->next;
+		}
+		return temp->data;
+	}
+
+	void pop_front()
+	{
+		ListNode<T>* temp = first;
+		first = first->next;
+		delete temp;
+		size--;
+	}
+
+	void pop_back()
+	{
+		ListNode<T>* temp = last;
+		ListNode<T>* start = first;
+		while (start->next != last)
+		{
+			start = start->next;
+		}
+		last = start;
+		delete temp;
+		size--;
 	}
 
 	void print()
 	{
-		ListNode<T>* 
-		while ()
+		ListNode<T>* curr = first;
+
+		std::cout << "{ ";
+		for (size_t i = 0; i < size - 1; i++)
 		{
-
+			std::cout << curr->data << ", ";
+			curr = curr->next;
 		}
-	}
-
-
-public:
-	LinkedList()
-	{
-		start = end = nullptr;
-		size = 0;
-	}
-	LinkedList(const LinkedList<T>* other)
-	{
-		copy(other);
-
-	}
-	~LinkedList()
-	{
-		destroy();
+		std::cout << curr->data << " }\n";
 	}
 
 };

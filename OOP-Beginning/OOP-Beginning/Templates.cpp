@@ -6,35 +6,46 @@ using namespace std;
 template <typename T> class MyVector
 {
 private:
+	T* container;
+	size_t _size;
+	size_t capacity;
 	void resize();
-	int _size;
-	int* buffer;
-	int capacity;
+
 public:
 	MyVector();
 	~MyVector();
 	MyVector(const MyVector&);
 	MyVector& operator=(const MyVector&);
+
 public:
-	void add(const T element);
-	T& getAt(const int index);
-	void setAt(const int index, const T element);
+	void push_back(T element);
+	void push(size_t index, T element);
+	void pop_back();
+	void pop_front();
+	
 	T& operator[](const int index)const;
 	void print()const;
+	size_t size() const;
 };
 
-//int main()
-//{
-//	MyVector<int> a;
-//	a.add(3);
-//	a.add(65);
-//	a.add(4);
-//	a.add(5);
-//
-//	a.print();
-//
-//	return 0;
-//}
+int main()
+{
+	MyVector<int> a;
+	a.push_back(3);
+	a.push_back(65);
+	a.push_back(4);
+	a.push_back(5);
+
+	a.print();
+
+	a.pop_back();
+	a.pop_front();
+	cout << a.size() << endl;
+
+	a.print();
+
+	return 0;
+}
 
 template<typename T>
 void MyVector<T>::resize()
@@ -42,27 +53,27 @@ void MyVector<T>::resize()
 	capacity = capacity * 2;
 	T* temp = new T[capacity];
 
-	for (int i = 0; i < _size; i++)
+	for (size_t i = 0; i < _size; i++)
 	{
-		temp[i] = buffer[i];
+		temp[i] = container[i];
 	}
-	delete[] buffer;
-	buffer = temp;
+	delete[] container;
+	container = temp;
 }
 
 template<typename T>
 MyVector<T>::MyVector()
 {
 	_size = 0;
-	buffer = nullptr;
 	capacity = 8;
+	container = new T[capacity];
 }
 
 template<typename T>
 MyVector<T>::~MyVector()
 {
 	_size = 0;
-	delete[] buffer;
+	delete[] container;
 	capacity = 0;
 }
 
@@ -71,10 +82,10 @@ MyVector<T>::MyVector<T>(const MyVector<T>& other)
 {
 	_size = other._size;
 	capacity = other.capacity;
-	buffer = new T[_size];
-	for (int i = 0; i < _size; i++)
+	container = new T[capacity];
+	for (size_t i = 0; i < _size; i++)
 	{
-		buffer[i] = other.buffer[i];
+		container[i] = other.container[i];
 	}
 }
 
@@ -83,15 +94,15 @@ MyVector<T>& MyVector<T>::operator=(const MyVector<T>& other)
 {
 	if (this != &other)
 	{
-		delete[] buffer;
+		delete[] container;
 
 		_size = other._size;
 		capacity = other.capacity;
 
-		buffer = new T[_size];
-		for (int i = 0; i < _size; i++)
+		container = new T[capacity];
+		for (size_t i = 0; i < _size; i++)
 		{
-			buffer[i] = other.buffer[i];
+			container[i] = other.container[i];
 		}
 	}
 
@@ -99,55 +110,73 @@ MyVector<T>& MyVector<T>::operator=(const MyVector<T>& other)
 }
 
 template<typename T>
-void MyVector<T>::add(const T element)
+void MyVector<T>::push_back(T element)
 {
-	if (_size == capacity)
+	if (_size >= capacity)
 	{
-		resize();
+		this->resize();
 	}
-
-	T* newBuffer = new T[_size + 1];
-	for (int i = 0; i < _size + 1; i++)
-	{
-		newBuffer[i] = buffer[i];
-	}
-	newBuffer[_size + 1] = element;
-
-	if (_size > 0)
-	{
-		delete[] buffer;
-	}
-
-	buffer = newBuffer;
+	container[_size] = element;
 	_size++;
 }
 
 template<typename T>
-T & MyVector<T>::operator[](const int index) const
+void MyVector<T>::push(size_t index, T element)
 {
-	//std::cout << a[0]; | a.operator[] (0)
-	//a[0] = 10;
+	_size++;
 
+	for (size_t i = _size; i > index + 1; i--)
+	{
+		container[i] = container[i - 1];
+	}
+
+	container[index] = element;
+}
+
+template<typename T>
+void MyVector<T>::pop_back()
+{
+	_size--;
+}
+
+template<typename T>
+void MyVector<T>::pop_front()
+{
+	T temp = container[1];
+	for (size_t i = 0; i < _size - 1; i++)
+	{
+		container[i] = temp;
+		temp = container[i + 2];
+	}
+	_size--;
+}
+
+template<typename T>
+T& MyVector<T>::operator[](const int index) const
+{
 	assert(index >= 0);
 	assert(index < _size);
 
-	return buffer[index];
-
+	return container[index];
 }
 
 template<typename T>
 void MyVector<T>::print() const
 {
 	cout << "[ ";
-	for (int i = 0; i < _size; i++)
+	for (size_t i = 0; i < _size; i++)
 	{
-		if (i != _size - 1)
+		if (i == _size - 1)
 		{
-			cout << buffer[i] << " ";
+			cout << container[i] << " ]\n";
+			return;
 		}
-		cout << buffer[i];
+		cout << container[i] << " ";
 	}
-	cout << "]\0";
 }
 
-
+template<typename T>
+size_t MyVector<T>::size() const
+{
+	return _size;
+}
