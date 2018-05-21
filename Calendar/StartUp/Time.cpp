@@ -99,4 +99,3 @@ size_t Time::toMiliseconds()
 {
 	return ((((hours * 60) + minutes) * 60) + seconds) * 1000;
 }
-

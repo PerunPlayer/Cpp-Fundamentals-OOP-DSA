@@ -145,7 +145,7 @@ public:
 		size--;
 	}
 
-	void print(std::ostream& out)
+	void printObjects(std::ostream& out)
 	{
 		ListNode<T>* curr = first;
 
@@ -160,7 +160,7 @@ public:
 		out << " }\n";
 	}
 
-	void printPrimitives(std::ostream& out)
+	void printPrimitiveTypes(std::ostream& out)
 	{
 		ListNode<T>* curr = first;
 

@@ -34,5 +34,5 @@ void Day::setTasks(LinkedList<Task*> t)
 
 void Day::printTasks(std::ostream& out)
 {
-	tasks.print(out);
+	tasks.printObjects(out);
 }

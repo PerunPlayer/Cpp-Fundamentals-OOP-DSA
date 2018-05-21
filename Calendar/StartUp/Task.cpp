@@ -19,6 +19,42 @@ void myStrCpy(char*& dest, const char* src)
 	}
 }
 
+std::string differenceInTimeformat(size_t miliseconds)
+{
+	size_t diffDays = miliseconds / TWENTY_FOUR_HOURS;
+	miliseconds -= (diffDays * TWENTY_FOUR_HOURS);
+	size_t diffHours = miliseconds / (TWENTY_FOUR_HOURS / 24);
+	miliseconds -= (diffHours * (TWENTY_FOUR_HOURS / 24));
+	size_t diffMinutes = miliseconds / (60 * 1000);
+	miliseconds -= (diffMinutes * (60 * 1000));
+	size_t diffSeconds = miliseconds * 1000;
+	miliseconds -= (diffSeconds * 1000);
+
+	std::string durationStr = std::to_string(diffDays) + " days " + std::to_string(diffHours) + ":";
+	if (diffMinutes < 10)
+	{
+		durationStr += "0";
+	}
+	durationStr += std::to_string(diffMinutes) + ":";
+	if (diffSeconds < 10)
+	{
+		durationStr += "0";
+	}
+	durationStr += std::to_string(diffSeconds) + ".";
+
+	if (miliseconds < 100)
+	{
+		durationStr += "0";
+		if (miliseconds < 10)
+		{
+			durationStr += "0";
+		}
+	}
+	durationStr += std::to_string(miliseconds);
+
+	return durationStr;
+}
+
 std::ostream& operator<<(std::ostream& out, Task& task)
 {
 	task.print(out);

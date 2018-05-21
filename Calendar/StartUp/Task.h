@@ -5,6 +5,7 @@
 #include <tuple>
 
 void myStrCpy(char*& dest, const char* src);
+std::string differenceInTimeformat(size_t durationInMiliseconds);
 
 enum Type
 {

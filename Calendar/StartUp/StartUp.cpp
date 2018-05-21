@@ -48,6 +48,7 @@ int main()
 	tuple<Time, Time> timespan3 = make_tuple(start3, end3);
 	EntertainmentTask ent1(playMusic, "Pernik", "Concert", "Night with Dazed and G-Point Rock", timespan3);
 	ent1.checkWeather();
+	string duration = differenceInTimeformat(ent1.getDuration());
 
 	Day concertDay;
 	Task* concert = new EntertainmentTask(ent1);
@@ -91,7 +92,7 @@ int main()
 	//for2018.getMonths()[1].getDays()[4].getTasks().push_back(businessTask);
 	//for2018.getMonths()[1].getDays()[4].getTasks().print(cout);
 
-	tasks.print(cout);
+	tasks.printObjects(cout);
 
     return 0;
 }
