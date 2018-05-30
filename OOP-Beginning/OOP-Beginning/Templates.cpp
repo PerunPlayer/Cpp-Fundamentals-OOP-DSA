@@ -18,13 +18,15 @@ public:
 	MyVector& operator=(const MyVector&);
 
 public:
-	void push_back(T element);
 	void push(size_t index, T element);
+	void push_back(T element);
+	void push_front(T element);
+	void pop(size_t index, T element);
 	void pop_back();
 	void pop_front();
 	
-	T& operator[](const int index)const;
-	void print()const;
+	T& operator[](const int index) const;
+	void print() const;
 	size_t size() const;
 };
 
@@ -118,6 +120,24 @@ void MyVector<T>::push_back(T element)
 	}
 	container[_size] = element;
 	_size++;
+}
+
+template<typename T>
+void MyVector<T>::push_front(T element)
+{
+	push(0, element);
+}
+
+template<typename T>
+void MyVector<T>::pop(size_t index, T element)
+{
+	T temp = container[index + 1];
+	for (size_t i = index; i < _size - 1; i++)
+	{
+		container[i] = temp;
+		temp = container[i + 2];
+	}
+	_size--;
 }
 
 template<typename T>
