@@ -30,24 +30,24 @@ public:
 	size_t size() const;
 };
 
-int main()
-{
-	MyVector<int> a;
-	a.push_back(3);
-	a.push_back(65);
-	a.push_back(4);
-	a.push_back(5);
-
-	a.print();
-
-	a.pop_back();
-	a.pop_front();
-	cout << a.size() << endl;
-
-	a.print();
-
-	return 0;
-}
+//int main()
+//{
+//	MyVector<int> a;
+//	a.push_back(3);
+//	a.push_back(65);
+//	a.push_back(4);
+//	a.push_back(5);
+//
+//	a.print();
+//
+//	a.pop_back();
+//	a.pop_front();
+//	cout << a.size() << endl;
+//
+//	a.print();
+//
+//	return 0;
+//}
 
 template<typename T>
 void MyVector<T>::resize()

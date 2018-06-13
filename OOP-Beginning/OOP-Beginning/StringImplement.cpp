@@ -1,21 +1,19 @@
 #include "stdafx.h"
 #include <cstring>
 
-class MyString
+class String
 {
 public:
-	MyString();
-	~MyString();
-	MyString(const MyString&);
-	MyString(const char* value);
-	MyString& operator=(const MyString&);
-	MyString& operator=(const char*);
-
+	String();
+	~String();
+	String(const String&);
+	String(const char* value);
+	String& operator=(const String&);
+	String& operator=(const char*);
 
 private:
 	char* container;
-	int length;
-	//add resize...
+	size_t length;
 
 public:
 	int size();
@@ -24,59 +22,54 @@ public:
 	char operator[](int index);
 	void operator+=(char* strToAppend);
 	void append(char* strToAppend);
-	void push_back(char c);
-	void pop_back();
-	short compare(MyString& other);
-	char* data();
-	bool find(char* strToFind);
 
 private:
 	void stringCopy(char*&, const char*, int);
 	void init();
-	void copy(const MyString&);
+	void copy(const String&);
 	void destroy();
 };
 
-//int main()
-//{
-//	MyString str;
-//	MyString str1 = "str";
-//	str = "abv";
-//	str += "cd";
-//	int s = str.size();
-//	char c = str[2];
-//	bool isEmpty = str.empty();
-//	str.clear();
-//	s = str.size();
-//	isEmpty = str.empty();
-//
-//	return 0;
-//}
+int main()
+{
+	String str;
+	String str1 = "str";
+	str = "abv";
+	str += "cd";
+	int s = str.size();
+	char c = str[2];
+	bool isEmpty = str.empty();
+	str.clear();
+	s = str.size();
+	isEmpty = str.empty();
 
-MyString::MyString()
+	return 0;
+}
+
+String::String()
 {
 	init();
 }
 
-MyString::~MyString()
+String::~String()
 {
 	destroy();
 }
 
-MyString::MyString(const MyString& other)
+String::String(const String& other)
 {
 	init();
 	copy(other);
 }
 
-MyString::MyString(const char* value)
+String::String(const char* value)
 {
 	this->length = strlen(value);
 	this->container = new char[length + 1];
 	stringCopy(this->container, value, length + 1);
 }
 
-MyString& MyString::operator=(const MyString& other)
+String& String::operator=(const String& other)
 {
 	if (this != &other)
 	{
@@ -87,7 +80,7 @@ MyString& MyString::operator=(const MyString& other)
 	return *this;
 }
 
-MyString& MyString::operator=(const char* other)
+String& String::operator=(const char* other)
 {
 	if (this != nullptr)
 	{
@@ -101,7 +94,7 @@ MyString& MyString::operator=(const char* other)
 	return *this;
 }
 
-void MyString::stringCopy(char*& destination, const char* source, int size)
+void String::stringCopy(char*& destination, const char* source, int size)
 {
 	destination = new char[size];
 	for (int i = 0; i < size - 1; i++)
@@ -113,35 +106,35 @@ void MyString::stringCopy(char*& destination, const char* source, int size)
 	return;
 }
 
-void MyString::init()
+void String::init()
 {
 	this->container = nullptr;
 	this->length = 0;
 }
 
-void MyString::copy(const MyString& other)
+void String::copy(const String& other)
 {
 	this->length = other.length;
 	stringCopy(this->container, other.container, length);
 }
 
-void MyString::destroy()
+void String::destroy()
 {
 	delete[] container;
 }
 
-int MyString::size()
+int String::size()
 {
 	return this->length;
 }
 
-void MyString::clear()
+void String::clear()
 {
 	destroy();
 	init();
 }
 
-bool MyString::empty()
+bool String::empty()
 {
 	if (this->length > 0)
 	{
@@ -150,20 +143,33 @@ bool MyString::empty()
 	return true;
 }
 
-char MyString::operator[](int index)
+char String::operator[](int index)
 {
 	return this->container[index];
 }
 
-void MyString::operator+=(char* strToAppend)
+void String::operator+=(char* strToAppend)
+{
+	append(strToAppend);
+}
+
+void String::append(char* strToAppend)
 {
 	int i = strlen(strToAppend);
 
+	char* temp = new char[length + i];
+	for (size_t i = 0; i < length; i++)
+	{
+		temp[i] = container[i];
+	}
+
+	delete[] container;
+
 	for (int k = 0, j = length; j < length + i; j++, k++)
 	{
-		this->container[j] = strToAppend[k];
+		temp[j] = strToAppend[k];
 	}
 	length += i;
-	this->container[length] = '\0';
+	stringCopy(container, temp, length);
+	delete[] temp;
 }
-
