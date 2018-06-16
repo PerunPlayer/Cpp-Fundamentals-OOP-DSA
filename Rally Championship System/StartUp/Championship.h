@@ -1,36 +1,43 @@
 #pragma once
 
-#include <vector>
-
 #include "Race.h"
+#include "Participant.h"
+
+#include <tuple>
 
 class Championship
 {
 private:
-	std::vector<Race> races;
-	std::vector<Participant*> participants;
-	bool manufactorersTrophy;
-	bool pilotsTrophy;
+	Vector<Race> races;
+	Vector<Participant*> participants;
+	Manufactorer championCrew;
+	Pilot championPilot;
+	size_t raceMarker;
+
+	Vector<std::tuple<Pilot, unsigned short, double>> pilotsRanking;
+	Vector<std::tuple<Manufactorer, unsigned short>> manufactorersRanking;
 
 	bool isSeasonOver();
+	void swapP(std::tuple<Pilot, unsigned short, double> &a, size_t i, std::tuple<Pilot, unsigned short, double> &b, size_t j);
+	void swapM(std::tuple<Manufactorer, unsigned short> &a, size_t i, std::tuple<Manufactorer, unsigned short> &b, size_t j);
 
 public:
 	//constructors
-	Championship(std::vector<Race> races, std::vector<Participant*> participants, bool manufactorersTrophy, bool pilotsTrophy);
+	Championship(Vector<Race> races, Vector<Participant*> participants);
 
 	//getters
-	unsigned short getNumberOfRaces();
-	std::vector<Race> getRaces();
-	auto getCountOfParticipants();
-	std::vector<Participant*> getParticipants();
-	bool getManufactorersTrophy();
-	bool getPilotsTrophy();
+	size_t getNumberOfRaces();
+	Vector<Race> getRaces();
+	size_t getCountOfParticipants();
+	Vector<Participant*> getParticipants();
+	Manufactorer getChampionCrew();
+	Pilot getChampionPilot();
 
 	//setters
-	void setRaces(std::vector<Race> races);
-	void setParticipants(std::vector<Participant*> participants);
-	void setManufactorersTrophy(bool manufactorersTrophy);
-	void setPilotsTrophy(bool pilotsTrophy);
+	void setRaces(Vector<Race> races);
+	void setParticipants(Vector<Participant*> participants);
+	void setChampionCrew(Manufactorer championCrew);
+	void setChampionPilot(Pilot championPilot);
 
 	//functionalities
 	void startNextRace(); //show results
