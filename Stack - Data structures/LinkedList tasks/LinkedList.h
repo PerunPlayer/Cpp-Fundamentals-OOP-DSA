@@ -236,7 +236,7 @@ inline void LinkedList<T>::removeRepeatedNodes()
 		indexer2 = indexer1->next;
 		i = j + 1;
 		j++;
-
+		
 		for (size_t k = 0; k < size, indexer2->next != nullptr; k++)
 		{
 			if (indexer2->data == indexer1->data)
