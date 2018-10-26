@@ -37,6 +37,8 @@ int main()
 	llist.print();
 	llist.removeRepeatedNodes();
 	llist.print();
+	llist.reverse();
+	llist.print();
 
 	return 0;
 }

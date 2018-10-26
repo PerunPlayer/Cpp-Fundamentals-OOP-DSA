@@ -39,6 +39,7 @@ public:
 	unsigned int getSize() const;
 
 	void removeRepeatedNodes();
+	void reverse();
 };
 
 template<class T>
@@ -236,7 +237,7 @@ inline void LinkedList<T>::removeRepeatedNodes()
 		indexer2 = indexer1->next;
 		i = j + 1;
 		j++;
-		
+
 		for (size_t k = 0; k < size, indexer2->next != nullptr; k++)
 		{
 			if (indexer2->data == indexer1->data)
@@ -263,4 +264,25 @@ inline void LinkedList<T>::removeRepeatedNodes()
 		}
 		indexer1 = indexer1->next;
 	}
+}
+
+template<class T>
+inline void LinkedList<T>::reverse()
+{
+	ListNode<T>* temp = first;
+	ListNode<T>* prev = nullptr, *next = nullptr;
+
+	while (temp != nullptr)
+	{
+		//Store next
+		next = temp->next;
+
+		// Reverse current node's pointer
+		temp->next = prev;
+
+		// Move pointers one position ahead. 
+		prev = temp;
+		temp = next;
+	}
+	first = prev;
 }
