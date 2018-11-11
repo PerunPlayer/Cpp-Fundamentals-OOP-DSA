@@ -35,7 +35,7 @@ public:
 	void pop_front();
 	void pop_back();
 	void popFrom(size_t index);
-	void print();
+	void print() const;
 	unsigned int getSize() const;
 
 	void removeRepeatedNodes();
@@ -206,7 +206,7 @@ inline void LinkedList<T>::popFrom(size_t index)
 }
 
 template<class T>
-inline void LinkedList<T>::print()
+inline void LinkedList<T>::print() const
 {
 	ListNode<T>* curr = first;
 
@@ -269,11 +269,11 @@ inline void LinkedList<T>::removeRepeatedNodes()
 template<class T>
 inline void LinkedList<T>::reverse()
 {
-	Node *current = head;
-	Node *prev = nullptr, *next = nullptr;
+	ListNode<T> *current = first;
+	ListNode<T> *prev = nullptr, *next = nullptr;
 
 
-	while (current != nullptr)
+	while (current)
 	{
 		next = current->next;
 		current->next = prev;
@@ -281,5 +281,5 @@ inline void LinkedList<T>::reverse()
 		prev = current;
 		current = next;
 	}
-	head = prev;
+	first = prev;
 }

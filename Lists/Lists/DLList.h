@@ -7,16 +7,16 @@ struct DLListNode {
 	DLListNode<T>* previous;
 	DLListNode(const T&, DLListNode<T>* = nullptr, DLListNode<T>* = nullptr);
 };
-template<class T>
-class DLListIterator;
+//template<class T>
+//class DLListIterator;
 
 template<class T>
 class DLList {
 	DLListNode<T>* first;
 	DLListNode<T>* last;
 	size_t currentSize;
-	void copyList(const DLList<T>&);
-	void deleteList();
+	void copy(const DLList<T>&);
+	void destroy();
 public:
 	DLList();
 	DLList(const DLList<T>&);
@@ -30,6 +30,6 @@ public:
 	T back() const;
 	bool empty() const;
 	size_t size() const;
-	DLListIterator<T> begin() const;
-	DLListIterator<T> end() const;
+	void print() const;
+	void reverse();
 };

@@ -5,14 +5,14 @@ struct Node
 {
 	T data;
 	Node next[2];
-	Node(T _data, Node* next, Node* skip);
+	Node(const T &_data, Node* _next, Node* _skip);
 };
 
 //template <class T>
 //class Iterator
 
 template <class T>
-class SkipList<T>
+class SkipList
 {
 private:
 	Node<T> *first, *last;
