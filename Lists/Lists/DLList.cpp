@@ -170,18 +170,21 @@ void DLList<T>::print() const
 template<class T>
 void DLList<T>::reverse()
 {
-	DLListNode<T> *current = first;
-	DLListNode<T> *temp = nullptr;
+	if ((this->first == nullptr) || (currentSize == 1))
+	{
+		return;
+	}
 
-	while (current)
+	DLListNode<T> *current = this->first;
+	DLListNode<T> *temp = this->last;
+	this->last = this->first;
+	this->first = temp;
+
+	while (current != nullptr)
 	{
 		temp = current->previous;
 		current->previous = current->next;
 		current->next = temp;
-		if (!current->previous)
-		{
-			first = current;
-		}
 		current = current->previous;
 	}
 }
