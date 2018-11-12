@@ -52,6 +52,8 @@ void DLList<T>::destroy()
 		delete toDelete;
 	}
 	first = last = nullptr;
+
+	currentSize = 0;
 }
 
 template<class T>

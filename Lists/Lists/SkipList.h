@@ -29,7 +29,7 @@ public:
 	SkipList& operator= (const SkipList<T> &other);
 	~SkipList();
 
-	void push(const T&);
+	void push_front(const T&);
 	size_t size();
 
 	/*SListIterator<T> begin();
