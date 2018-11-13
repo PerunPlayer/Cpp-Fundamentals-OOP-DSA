@@ -1,49 +1,9 @@
-#pragma once
+#include "stdafx.h"
 
-#include <iostream>
-
-template <class T>
-struct ListNode
-{
-	T data;
-	ListNode<T>* next;
-	ListNode(const T& _data, ListNode<T>* _next = nullptr) : data(_data), next(_next) {}
-};
-
-template <class T>
-class LinkedList
-{
-private:
-	ListNode<T>* first;
-	ListNode<T>* last;
-	unsigned int size;
-
-	void copy(const LinkedList<T>& other);
-	void destroy();
-
-public:
-
-	LinkedList();
-	LinkedList(const LinkedList<T>* other);
-	LinkedList& operator=(const LinkedList<T>& other);
-	~LinkedList();
-
-	void push_back(const T& elem);
-	void push_front(T data);
-	void pushAfter(T data, size_t index);
-	T get(int index);
-	void pop_front();
-	void pop_back();
-	void popFrom(size_t index);
-	void print() const;
-	unsigned int getSize() const;
-
-	void removeRepeatedNodes();
-	void reverse();
-};
+#include "LList.h"
 
 template<class T>
-inline void LinkedList<T>::copy(const LinkedList<T>& other)
+void LinkedList<T>::copy(const LinkedList<T>& other)
 {
 	ListNode<T>* temp = other.first;
 	while (temp)
@@ -54,7 +14,7 @@ inline void LinkedList<T>::copy(const LinkedList<T>& other)
 }
 
 template<class T>
-inline void LinkedList<T>::destroy()
+void LinkedList<T>::destroy()
 {
 	while (size > 0)
 	{
@@ -63,20 +23,20 @@ inline void LinkedList<T>::destroy()
 }
 
 template<class T>
-inline LinkedList<T>::LinkedList()
+LinkedList<T>::LinkedList()
 {
 	first = last = nullptr;
 	size = 0;
 }
 
 template<class T>
-inline LinkedList<T>::LinkedList(const LinkedList<T>* other)
+LinkedList<T>::LinkedList(const LinkedList<T>* other)
 {
 	copy(other);
 }
 
 template<class T>
-inline LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& other)
+LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& other)
 {
 	if (this != other)
 	{
@@ -89,13 +49,13 @@ inline LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& other)
 }
 
 template<class T>
-inline LinkedList<T>::~LinkedList()
+LinkedList<T>::~LinkedList()
 {
 	destroy();
 }
 
 template<class T>
-inline void LinkedList<T>::push_back(const T& elem)
+void LinkedList<T>::push_back(const T& elem)
 {
 	ListNode<T>* temp = new ListNode<T>(elem, nullptr);
 	ListNode<T>* indexer = first;
@@ -121,7 +81,7 @@ inline void LinkedList<T>::push_back(const T& elem)
 }
 
 template<class T>
-inline void LinkedList<T>::push_front(T data)
+void LinkedList<T>::push_front(T data)
 {
 	ListNode<T>* temp = new ListNode<T>(data, first);
 	first = temp;
@@ -129,7 +89,7 @@ inline void LinkedList<T>::push_front(T data)
 }
 
 template<class T>
-inline void LinkedList<T>::pushAfter(T data, size_t index)
+void LinkedList<T>::pushAfter(T data, size_t index)
 {
 	if (index >= size)
 	{
@@ -148,7 +108,7 @@ inline void LinkedList<T>::pushAfter(T data, size_t index)
 }
 
 template<class T>
-inline T LinkedList<T>::get(int index)
+T LinkedList<T>::get(int index)
 {
 	if (index >= size)
 	{
@@ -163,7 +123,7 @@ inline T LinkedList<T>::get(int index)
 }
 
 template<class T>
-inline void LinkedList<T>::pop_front()
+void LinkedList<T>::pop_front()
 {
 	ListNode<T>* temp = first;
 	first = first->next;
@@ -172,7 +132,7 @@ inline void LinkedList<T>::pop_front()
 }
 
 template<class T>
-inline void LinkedList<T>::pop_back()
+void LinkedList<T>::pop_back()
 {
 	ListNode<T>* temp = first;
 	while (temp->next != last)
@@ -186,7 +146,7 @@ inline void LinkedList<T>::pop_back()
 }
 
 template<class T>
-inline void LinkedList<T>::popFrom(size_t index)
+void LinkedList<T>::popFrom(size_t index)
 {
 	if (index >= size)
 	{
@@ -206,7 +166,7 @@ inline void LinkedList<T>::popFrom(size_t index)
 }
 
 template<class T>
-inline void LinkedList<T>::print() const
+void LinkedList<T>::print() const
 {
 	ListNode<T>* curr = first;
 
@@ -226,7 +186,7 @@ inline unsigned int LinkedList<T>::getSize() const
 }
 
 template<class T>
-inline void LinkedList<T>::removeRepeatedNodes()
+void LinkedList<T>::removeRepeatedNodes()
 {
 	ListNode<T>* indexer1 = first;
 	ListNode<T>* indexer2 = first->next;
@@ -267,7 +227,7 @@ inline void LinkedList<T>::removeRepeatedNodes()
 }
 
 template<class T>
-inline void LinkedList<T>::reverse()
+void LinkedList<T>::reverse()
 {
 	ListNode<T> *current = first;
 	ListNode<T> *prev = nullptr, *next = nullptr;
@@ -282,4 +242,40 @@ inline void LinkedList<T>::reverse()
 		current = next;
 	}
 	first = prev;
+}
+
+//If next value is bigger - delete it
+//input: 12 -> 15 -> 10 -> 11 -> 5 -> 6 -> 2 -> 3 ====> output: 12 -> 10 -> 5 -> 2
+template<class T>
+void LinkedList<T>::removeNodesOutOfSequence()
+{
+	ListNode<T>* curr = first;
+	while (curr->next)
+	{
+		if (curr->data < curr->next->data)
+		{
+			ListNode<T>* toDelete = curr->next;
+			curr->next = curr->next->next;
+			delete toDelete;
+		}
+		else
+		{
+			curr = curr->next;
+		}
+	}
+}
+
+template<class T>
+bool LinkedList<T>::existCycle()
+{
+	if (first->next == nullptr) return false;
+
+	ListNode<T> *fast = first, *slow = first;
+	do
+	{
+		slow = slow->next;
+		fast = fast->next->next;
+	} while ((slow != fast) && (fast->next != nullptr));
+
+	return (slow == fast);
 }

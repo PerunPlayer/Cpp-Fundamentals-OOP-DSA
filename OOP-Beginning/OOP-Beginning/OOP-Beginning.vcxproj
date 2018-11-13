@@ -145,7 +145,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -154,7 +153,6 @@
     <ClCompile Include="FastTask.cpp" />
     <ClCompile Include="FastTask2.cpp" />
     <ClCompile Include="Inheritance.cpp" />
-    <ClCompile Include="LList.cpp" />
     <ClCompile Include="OOP-Beginning.cpp" />
     <ClCompile Include="OOP-classes.cpp" />
     <ClCompile Include="PointerToFunction.cpp" />
