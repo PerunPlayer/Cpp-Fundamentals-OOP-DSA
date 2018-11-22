@@ -93,10 +93,22 @@ void reverseList(DLinkedListNode<T>*& first, unsigned int n)
 	first = lastReversed;
 }
 
+//if (currentElement->data - currentElement->previous->data != progStep)
+//{
+//	DLinkedListNode<T> *toDelete = currentElement;
+//	currentElement->previous->next = currentElement->next;
+//	if (currentElement->next)
+//	{
+//		currentElement->next->previous = currentElement->previous;
+//	}
+//	currentElement = currentElement->next;
+//	delete toDelete;
+//}
+
 template <typename T>
 void makeProgresson(DLinkedListNode<T>*& first)
 {
-	if (first == nullptr || first->next = nullptr || first->next->next == nullptr)
+	if ((first == nullptr) || (first->next == nullptr) || (first->next->next == nullptr))
 	{
 		return;
 	}
@@ -104,12 +116,15 @@ void makeProgresson(DLinkedListNode<T>*& first)
 	DLinkedListNode<T>* current1 = first, *current2 = first->next, *toDelete = nullptr;
 	while (current2)
 	{
-		double sum = current1->data + current2->data;
+		int sum = current1->data + current2->data;
 		if (current2->next->data != sum)
 		{
 			toDelete = current2->next;
 			current2->next = toDelete->next;
-			current2->next->prev = toDelete->prev;
+			if (current2->next)
+			{
+				current2->next->prev = toDelete->prev;
+			}
 			delete toDelete;
 		}
 		else
@@ -151,7 +166,29 @@ int main()
 	}
 	std::cout << "---- I am partial reversed Doubly linked list!" << std::endl;
 
+	//Task 2 Make progression
+	makeProgresson(testCreatingDLList);
+	while (testCreatingDLList)
+	{
+		std::cout << testCreatingDLList->data << " ";
+		testCreatingDLList = testCreatingDLList->next;
+	}
+	std::cout << "---- I am progression in Doubly linked list!" << std::endl;
 
+	DLinkedListNode<int>* testProgressionDLList = createDLList(11);
+	toIterateD = testProgressionDLList;
+	while (toIterateD)
+	{
+		std::cout << toIterateD->data << " ";
+		toIterateD = toIterateD->next;
+	}
+	makeProgresson(testProgressionDLList);
+	while (testProgressionDLList)
+	{
+		std::cout << testProgressionDLList->data << " ";
+		testProgressionDLList = testProgressionDLList->next;
+	}
+	std::cout << "---- I am progression in Doubly linked list!" << std::endl;
 
 	return 0;
 }
