@@ -114,18 +114,21 @@ void makeProgresson(DLinkedListNode<T>*& first)
 	}
 
 	DLinkedListNode<T>* current1 = first, *current2 = first->next, *toDelete = nullptr;
-	while (current2)
+	while (current2->next)
 	{
 		int sum = current1->data + current2->data;
 		if (current2->next->data != sum)
 		{
 			toDelete = current2->next;
-			current2->next = toDelete->next;
-			if (current2->next)
+			if (toDelete)
 			{
-				current2->next->prev = toDelete->prev;
+				current2->next = toDelete->next;
+				if (current2->next)
+				{
+					current2->next->prev = toDelete->prev;
+				}
+				delete toDelete;
 			}
-			delete toDelete;
 		}
 		else
 		{
@@ -182,6 +185,7 @@ int main()
 		std::cout << toIterateD->data << " ";
 		toIterateD = toIterateD->next;
 	}
+	std::cout << std::endl;
 	makeProgresson(testProgressionDLList);
 	while (testProgressionDLList)
 	{
