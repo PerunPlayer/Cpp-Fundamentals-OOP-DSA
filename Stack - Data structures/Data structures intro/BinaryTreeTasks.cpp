@@ -66,6 +66,19 @@ bool isBalanced(Node<int>* root)
 	return ((abs(leftHeight - rightHeight) <= 1) && isBalanced(root->left) && isBalanced(root->right));
 }
 
+bool isBSTreeHelper(Node<int>* root, const int& min, const int& max)
+{
+	if (!root)
+	{
+		return true;
+	}
+
+	return (root->data >= min) &&
+		(root->data < max) &&
+		isBSTreeHelper(root->left, min, root->data) &&
+		isBSTreeHelper(root->right, root->data, max);
+}
+
 bool isBSTree(Node<int>* root)
 {
 	if (!root)
@@ -78,8 +91,7 @@ bool isBSTree(Node<int>* root)
 	}
 
 	int max, min;
-
-
+	return isBSTreeHelper(root, INT_MAX, INT_MIN);
 }
 
 int main()
