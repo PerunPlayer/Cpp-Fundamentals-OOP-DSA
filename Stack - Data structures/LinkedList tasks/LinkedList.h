@@ -78,7 +78,7 @@ inline LinkedList<T>::LinkedList(const LinkedList<T>* other)
 template<class T>
 inline LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& other)
 {
-	if (this != other)
+	if (this != &other)
 	{
 		destroy();
 		first = last = nullptr;

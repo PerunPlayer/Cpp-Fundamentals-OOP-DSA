@@ -49,6 +49,28 @@ inline Stack<T>::Stack()
 template<typename T>
 inline Stack<T>::Stack(const Stack<T>& other)
 {
+	copy(other);
+}
+
+template<typename T>
+inline Stack & Stack<T>::operator=(const Stack<T>& other)
+{
+	if (this != &other)
+	{
+		size = 0;
+		topNode = nullptr;
+		copy(other);
+	}
+	return *this;
+}
+
+template<typename T>
+inline Stack<T>::~Stack()
+{
+	if (top)
+	{
+		destroy();
+	}
 }
 
 template<typename T>

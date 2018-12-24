@@ -108,8 +108,6 @@ int main()
 	{
 		std::cout << "It isn't balanced!\n";
 	}
-	
-
 
 	return 0;
 }
