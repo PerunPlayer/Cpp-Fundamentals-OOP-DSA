@@ -5,83 +5,6 @@
 
 using namespace std;
 
-//string generateStartStr(size_t n)
-//{
-//	string start;
-//	start.resize(2 * n + 1);
-//	for (size_t i = 0; i < n; i++)
-//	{
-//		if (i < n)
-//		{
-//			start[i] = '>';
-//		}
-//		else if (i == n)
-//		{
-//			start[i] = '=';
-//		}
-//		else
-//		{
-//			start[i] = '<';
-//		}
-//
-//		return start;
-//	}
-//}
-//
-//string generateCorrectStr(size_t n)
-//{
-//	string result;
-//	result.resize(2 * n + 1);
-//	for (size_t i = 0; i < n; i++)
-//	{
-//		if (i < n)
-//		{
-//			result[i] = '<';
-//		}
-//		else if (i == n)
-//		{
-//			result[i] = '=';
-//		}
-//		else
-//		{
-//			result[i] = '>';
-//		}
-//	}
-//	return result;
-//}
-
-//void pushValidMoves(string& str)
-//{
-//	if ((str[index + 1] == '_' || str[index + 2] == '_') ||			//jump to right
-//		(str[index - 1] == '_' || str[index - 2] == '_'))			//jump to left
-//	{
-//		return true;
-//	}
-//
-//	return false;
-//}
-
-//void move(vector<string> permutations, string frogField)
-//{
-//	string correctStr = generateCorrectStr(frogField.size());
-//	if (frogField == correctStr)
-//	{
-//		return;
-//	}
-//	if (true)
-//	{
-//
-//	}
-//}
-
-//void frogsJumping(size_t frogsInDirection)
-//{
-//	string frogField = generateStartStr(frogsInDirection);
-//	cout << frogField << endl;
-//	
-//
-//}
-
 vector<string> createSimpleField(size_t n)
 {
 	vector<string> frogField((n * 2) + 1);
@@ -201,7 +124,6 @@ void moveToRight(size_t steps, size_t countMax, vector<string>& frogField, vecto
 		{
 			swap(frogField[i], frogField[i + 2]);
 			print(frogField);
-			//cout << "Muskarac\n";
 			steps--;
 			flag = true;
 		}
@@ -226,7 +148,7 @@ void moveToRight(size_t steps, size_t countMax, vector<string>& frogField, vecto
 	}
 }
 
-void frogsJumpingSimple(size_t frogsInDirection)
+void frogsJumping(size_t frogsInDirection)
 {
 	vector<string> frogField((frogsInDirection * 2) + 1);
 	frogField = createSimpleField(frogsInDirection);
@@ -238,7 +160,7 @@ void frogsJumpingSimple(size_t frogsInDirection)
 	//print(correctField);
 	//--------------------------
 
-	size_t countMax = 0;
+	size_t countMax = 0;		//max times for max movements made in one direction
 	for (size_t i = 1; i <= frogField.size(), countMax <= 3, frogField != correctField;)
 	{
 		moveToLeft(i, countMax, frogField, correctField);
@@ -264,7 +186,7 @@ void frogsJumpingSimple(size_t frogsInDirection)
 
 int main()
 {
-	size_t frogsInDirection;
+	int frogsInDirection;
 
 	do
 	{
@@ -272,8 +194,7 @@ int main()
 		cin >> frogsInDirection;
 	} while (frogsInDirection <= 0);
 
-	//frogsJumping(frogsInDirection);
-	frogsJumpingSimple(frogsInDirection);
+	frogsJumping(frogsInDirection);
 
 	return 0;
 }

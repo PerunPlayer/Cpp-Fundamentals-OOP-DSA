@@ -1,40 +1,29 @@
 ========================================================================
     CONSOLE APPLICATION : Frogs Project Overview
 ========================================================================
-
-AppWizard has created this Frogs application for you.
-
-This file contains a summary of what you will find in each of the files that
-make up your Frogs application.
-
-
-Frogs.vcxproj
-    This is the main project file for VC++ projects generated using an Application Wizard.
-    It contains information about the version of Visual C++ that generated the file, and
-    information about the platforms, configurations, and project features selected with the
-    Application Wizard.
-
-Frogs.vcxproj.filters
-    This is the filters file for VC++ projects generated using an Application Wizard. 
-    It contains information about the association between the files in your project 
-    and the filters. This association is used in the IDE to show grouping of files with
-    similar extensions under a specific node (for e.g. ".cpp" files are associated with the
-    "Source Files" filter).
-
-Frogs.cpp
-    This is the main application source file.
-
-/////////////////////////////////////////////////////////////////////////////
-Other standard files:
-
-StdAfx.h, StdAfx.cpp
-    These files are used to build a precompiled header (PCH) file
-    named Frogs.pch and a precompiled types file named StdAfx.obj.
-
-/////////////////////////////////////////////////////////////////////////////
-Other notes:
-
-AppWizard uses "TODO:" comments to indicate parts of the source code you
-should add to or customize.
-
-/////////////////////////////////////////////////////////////////////////////
+Играта разполага с игрално поле от 2N+1 полета, като в началото в най-
+десните N полета имаме разположени жаби, гледащи наляво, а в най-левите
+полета - жаби, гледащи надясно. Целта на играта е жабите да си разменят
+местата и да се стигне до противоположната конфигурация:
+>>>_<<<
+.........
+<<<_>>>
+Правилата за игра са следните: всяка жаба може да се движи само в
+посоката,
+която гледа. Всяка жаба може да скочи на свободно място пред себе си или
+да
+прескочи една жаба, за да отиде на празно място пред нея.
+Вход: N – броят на жабите гледащи в една посока
+Изход: всички конфигурации, през които се минава за да се стигне от
+началното до финалното състояние.
+Примерен вход: 2
+Примерен Изход:
+>>_<<
+>_><<
+><>_<
+><><_
+><_<>
+_<><>
+<_><>
+<<>_>
+<<_>>
