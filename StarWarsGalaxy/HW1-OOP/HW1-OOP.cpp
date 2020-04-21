@@ -1,6 +1,6 @@
 // HW1-OOP.cpp : Defines the entry point for the console application.
 //
-//Да се направи клас Jedi в който да има name(char*), rank(char*/enum), midi-chlorian(double/float), planet(Planet), spicies(char*), militaryRank(char*).
+//Да се направи клас Jedi в който да има name(char*), rank(char*/enum), midi-chlorian(double/float), planet(Planet), species(char*), militaryRank(char*).
 //Да се направи клас Stormtrooper в който да има id(char*), rank(enum), type(char*), planet(Planet).
 //Да се направи клас Planet name(char*), planetSystem(char*), republic(char*) - име на притежаващата я република.
 //Да се направи клас JediTemple в който да има jedi(Jedi*).

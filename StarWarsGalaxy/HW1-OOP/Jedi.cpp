@@ -5,8 +5,8 @@ void Jedi::init()
 {
 	name = new char[1];
 	name[0] = 0;
-	spicies = new char[1];
-	spicies[0] = 0;
+	species = new char[1];
+	species[0] = 0;
 	militaryRank = new char[1];
 	militaryRank[0] = 0;
 	midichlorian = 0;
@@ -16,7 +16,7 @@ void Jedi::init()
 void Jedi::copy(const Jedi& other)
 {
 	myStrCpy(name, other.name);
-	myStrCpy(spicies, other.spicies);
+	myStrCpy(species, other.species);
 	myStrCpy(militaryRank, other.militaryRank);
 	midichlorian = other.midichlorian;
 	rank = other.rank;
@@ -26,7 +26,7 @@ void Jedi::copy(const Jedi& other)
 void Jedi::destroy()
 {
 	delete[] name;
-	delete[] spicies;
+	delete[] species;
 	delete[] militaryRank;
 	midichlorian = 0;
 	rank = (JediRank)0;
@@ -35,10 +35,10 @@ void Jedi::destroy()
 void Jedi::print(std::ostream& out)
 {
 	out << "[";
-	out << name << " - " << spicies << " - " << militaryRank << ", have " << midichlorian << " midi-chlorians and is " << " from " << planet << " - ";
+	out << name << " - " << species << " - " << militaryRank << ", have " << midichlorian << " midi-chlorians and is " << " from " << planet << " - ";
 	switch (this->rank)
 	{
-	case 0: 
+	case 0:
 		out << "JediInitiate";
 		break;
 	case 1:
@@ -84,21 +84,50 @@ Jedi::~Jedi()
 	destroy();
 }
 
-Jedi::Jedi(char* _name, JediRank _rank, double _midichlorian, Planet _planet, char* _spicies, char* _militaryRank)
+Jedi::Jedi(char* _name, JediRank _rank, double _midichlorian, Planet _planet, char* _species, char* _militaryRank)
 {
 	myStrCpy(this->name, _name);
-	myStrCpy(this->spicies, _spicies);
+	myStrCpy(this->species, _species);
 	myStrCpy(this->militaryRank, _militaryRank);
 	this->rank = _rank;
 	this->midichlorian = _midichlorian;
 	this->planet = _planet;
 }
 
+Jedi::Jedi(Jedi&& other)
+{
+	copy(other);
+
+	other.name = nullptr;
+	other.species = nullptr;
+	other.militaryRank = nullptr;
+}
+
+Jedi& Jedi::operator=(Jedi&& other)
+{
+	if (this != &other) {
+
+		destroy();
+		init();
+		copy(other);
+
+		delete[] other.name;
+		delete[] other.species;
+		delete[] other.militaryRank;
+
+		/*other.name = nullptr;
+		other.species = nullptr;
+		other.militaryRank = nullptr;*/
+	}
+
+	return *this;
+}
+
 bool Jedi::operator==(Jedi& other)
 {
 	if ((areEqualStr(this->name, other.name) || (this->name == other.name))
 		&& (this->rank == other.rank) && (this->midichlorian == other.midichlorian)
-		&& (this->planet == other.planet) && ((this->spicies == other.spicies) || areEqualStr(this->spicies, other.spicies))
+		&& (this->planet == other.planet) && ((this->species == other.species) || areEqualStr(this->species, other.species))
 		&& ((this->militaryRank == other.militaryRank) || areEqualStr(this->militaryRank, other.militaryRank)))
 	{
 		return true;
