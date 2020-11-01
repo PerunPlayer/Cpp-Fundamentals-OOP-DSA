@@ -21,6 +21,8 @@ public:
 	Stormtrooper& operator=(const Stormtrooper&);
 	~Stormtrooper();
 	Stormtrooper(char* id, TrooperRank rank, char* type, Planet planet);
+	Stormtrooper(Stormtrooper&& other);
+	Stormtrooper& operator=(Stormtrooper&& other);
 
 	bool operator==(Stormtrooper& other);
 	friend std::ostream& operator<<(std::ostream& out, Stormtrooper& trooper);

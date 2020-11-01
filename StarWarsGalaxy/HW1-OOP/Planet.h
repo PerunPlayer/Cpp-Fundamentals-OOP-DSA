@@ -7,12 +7,14 @@ bool areEqualStr(const char*, const char*);
 
 class Planet
 {
-public:		//Big 5
+public:
 	Planet();
 	Planet(const Planet&);
 	Planet& operator=(const Planet&);
 	~Planet();
 	Planet(char* name, char* planetSystem, char* republic);
+	Planet(Planet&& other);
+	Planet& operator=(Planet&& other);
 
 	bool operator==(Planet& other);
 	friend std::ostream& operator<<(std::ostream& out, Planet& planet);

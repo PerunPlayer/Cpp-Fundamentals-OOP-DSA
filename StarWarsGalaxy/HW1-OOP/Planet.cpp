@@ -35,6 +35,30 @@ Planet::Planet(char* _name, char* _planetSystem, char* _republic)
 	myStrCpy(this->republic, _republic);
 }
 
+Planet::Planet(Planet&& other)
+{
+	copy(other);
+
+	delete[] other.name;
+	delete[] other.planetSystem;
+	delete[] other.republic;
+}
+
+Planet& Planet::operator=(Planet&& other)
+{
+	if (this != &other) 
+	{
+		destroy();
+		init();
+		copy(other);
+
+		delete[] other.name;
+		delete[] other.planetSystem;
+		delete[] other.republic;
+	}
+	return *this;
+}
+
 bool Planet::operator==(Planet& other)
 {
 	if (((this->name == other.name) || areEqualStr(this->name, other.name))

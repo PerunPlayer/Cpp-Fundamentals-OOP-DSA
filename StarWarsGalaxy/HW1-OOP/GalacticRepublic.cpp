@@ -36,6 +36,26 @@ GalacticRepublic::GalacticRepublic(char* name, const JediTemple& temple, const A
 	this->galaxy = galaxy;
 }
 
+GalacticRepublic::GalacticRepublic(GalacticRepublic&& other)
+{
+	copy(other);
+
+	delete[] other.name;
+}
+
+GalacticRepublic& GalacticRepublic::operator=(GalacticRepublic&& other)
+{
+	if (this != &other) 
+	{
+		destroy();
+		init();
+		copy(other);
+
+		delete[] other.name;
+	}
+	return *this;
+}
+
 void GalacticRepublic::printAllJedi(Planet& planet)
 {
 	unsigned int limit = this->jediTemple.sizeOf();

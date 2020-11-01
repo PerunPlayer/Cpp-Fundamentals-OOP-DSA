@@ -94,6 +94,28 @@ Stormtrooper::Stormtrooper(char* _id, TrooperRank _rank, char* _type, Planet _pl
 	this->planet = _planet;
 }
 
+Stormtrooper::Stormtrooper(Stormtrooper&& other)
+{
+	copy(other);
+
+	delete[] id;
+	delete[] type;
+}
+
+Stormtrooper& Stormtrooper::operator=(Stormtrooper&& other)
+{
+	if (this != &other)
+	{
+		destroy();
+		init();
+		copy(other);
+
+		delete[] other.id;
+		delete[] other.type;
+	}
+	return *this;
+}
+
 bool Stormtrooper::operator==(Stormtrooper& other)
 {
 	if (((this->id == other.id) || areEqualStr(this->id, other.id)) 

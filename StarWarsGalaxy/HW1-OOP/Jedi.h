@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Planet.h"
+#include "String.h"
 #include <iostream>
 
 enum JediRank
@@ -42,4 +43,8 @@ public:			//Big 6
 
 	bool operator==(Jedi& other);
 	friend std::ostream& operator<<(std::ostream& out, Jedi& jedi);
+	const double& getMidichlorian() const;
+
+	void setMidichlorian(const double midichlorian);
+
 };

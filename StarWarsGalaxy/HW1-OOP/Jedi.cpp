@@ -105,8 +105,8 @@ Jedi::Jedi(Jedi&& other)
 
 Jedi& Jedi::operator=(Jedi&& other)
 {
-	if (this != &other) {
-
+	if (this != &other) 
+	{
 		destroy();
 		init();
 		copy(other);
@@ -133,6 +133,16 @@ bool Jedi::operator==(Jedi& other)
 		return true;
 	}
 	return false;
+}
+
+const double& Jedi::getMidichlorian() const
+{
+	return this->midichlorian;
+}
+
+void Jedi::setMidichlorian(const double midichlorian)
+{
+	this->midichlorian = midichlorian;
 }
 
 std::ostream& operator<<(std::ostream& out, Jedi& jedi)

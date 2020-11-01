@@ -6,12 +6,14 @@
 
 class GalacticRepublic
 {
-public:		//Big 5
+public:
 	GalacticRepublic();
 	GalacticRepublic(const GalacticRepublic& galacticRepublic);
 	GalacticRepublic& operator=(const GalacticRepublic& galacticRepublic);
 	~GalacticRepublic();
 	GalacticRepublic(char* name, const JediTemple& temple, const Army& army, const Galaxy& galaxy);
+	GalacticRepublic(GalacticRepublic&& other);
+	GalacticRepublic& operator=(GalacticRepublic&& other);
 
 	void printAllJedi(Planet& planet);
 	void printAllStormtroopers(Planet& planet);

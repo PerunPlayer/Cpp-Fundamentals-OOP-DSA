@@ -41,6 +41,28 @@ Galaxy::Galaxy(char* _name, Planet* _planets, unsigned int _countOfPlanets)
 	}
 }
 
+Galaxy::Galaxy(Galaxy&& other)
+{
+	copy(other);
+
+	delete[] other.name;
+	delete[] other.planets;
+}
+
+Galaxy& Galaxy::operator=(Galaxy&& other)
+{
+	if (this != &other) 
+	{
+		destroy();
+		init();
+		copy(other);
+
+		delete[] other.name;
+		delete[] other.planets;
+	}
+	return *this;
+}
+
 void Galaxy::add(Planet planet)
 {
 	if (this->size >= this->capacity)

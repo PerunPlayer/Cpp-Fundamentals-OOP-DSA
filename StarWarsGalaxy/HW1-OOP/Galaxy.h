@@ -4,12 +4,14 @@
 
 class Galaxy
 {
-public:		//Big 5
+public:
 	Galaxy();
 	Galaxy(const Galaxy&);
 	Galaxy& operator=(const Galaxy&);
 	~Galaxy();
 	Galaxy(char* name, Planet* planets, unsigned int countOfPlanets);
+	Galaxy(Galaxy&& other);
+	Galaxy& operator=(Galaxy&& other);
 
 public:
 	void add(Planet planet);

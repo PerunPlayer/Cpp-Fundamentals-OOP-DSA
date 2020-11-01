@@ -94,6 +94,7 @@ int main()
 	GalacticRepublic newWorldOrder("Republic of the new world order", orderOfTheGrayJedi, firstOrder, StarWarsGalaxy);
 	GalacticRepublic result = findDominating(republic, newWorldOrder, StarWarsGalaxy);
 
+
 	return 0;
 }
 
