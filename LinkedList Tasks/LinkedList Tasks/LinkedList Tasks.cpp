@@ -36,7 +36,7 @@ void pushAt(T data, ListNode<T>*& first, size_t index)
 {
 	ListNode<T>* curr = first;
 	ListNode<T>* newNode = new ListNode<T>(data, nullptr);
-	for (size_t i = 1; i < index-1; i++)
+	for (size_t i = 1; i < index - 1; i++)
 	{
 		curr = curr->next;
 	}
@@ -105,8 +105,44 @@ ListNode<T>*& find(ListNode<T>*& first, T data) //overload operator == for non p
 		}
 		curr = curr->next;
 	}
-	std::cout << "Element not found. First element returned."
+	std::cout << "Element not found. First element returned.\n";
 	return first;
+}
+
+//reverse
+template <class T>
+void reverse(ListNode<T>*& first)
+{
+	ListNode<T>* current = first;
+	ListNode<T>* prev = nullptr;
+	ListNode<T>* next = nullptr;
+
+	while (current) 
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	first = prev;
+}
+
+//checkForLoop
+template <class T>
+bool checkForLoop(ListNode<T>*& first)
+{
+	ListNode<T>* fastIterator = first;
+	ListNode<T>* slowIterator = first;
+
+	do
+	{
+		fastIterator = fastIterator->next->next;
+		slowIterator = slowIterator->next;
+		if (fastIterator == slowIterator)
+		{
+			return true;
+		}
+	} while (fastIterator && slowIterator);
 }
 
 template <class T>
@@ -147,6 +183,9 @@ int main()
 	print(first);
 	std::cout << find(first, 3)->data << std::endl;
 	std::cout << find(first, 56)->data << std::endl;
+	reverse(first);
+	print(first);
+
 	return 0;
 }
 
